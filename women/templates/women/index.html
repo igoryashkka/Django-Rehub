@@ -1,0 +1,36 @@
+{% extends 'women/base.html' %}
+{% block mainmenu %}  
+{% load women_tags %}
+    <h1>{{ title }}</h1> 
+{% endblock mainmenu %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Left Sidebar with Categories -->
+                {% getcats as categories%}
+                {% show_cat %}
+            </div>
+            <div class="col-md-9">
+                <!-- Main Content Area -->
+                <div class="container mt-4">
+                    <div class="card-deck">
+                        {% for e in records %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ e.title }}</h5>
+                                    <p class="card-text">{{ e.content }}</p>
+                                    {% if e.photo %}
+                                    <img src="{{e.photo.url}}" class="img-fluid img-thumbnail">
+                                    {% endif %}
+                                    <a href="{{e.get_absolute_url}}" class="btn btn-primary">Go to Link</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- Add more cards as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'women/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <!-- Main Content Area for Post -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Left side for picture -->
+                            <img src="{{ post_data.photo.url }}" class="img-fluid img-thumbnail" alt="{{ post.title }}">
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Right side for text -->
+                            <h5 class="card-title">{{ post_data.title }}</h5>
+                            <p class="card-text">{{ post_data.content }}</p>
+                            
+                            <!-- Buttons below the photo -->
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-primary">Like</button>
+                                <button type="button" class="btn btn-danger">Dislike</button>
+                                <button type="button" class="btn btn-success">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
