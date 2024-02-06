@@ -6,6 +6,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, logout,login
 # Create your views here.
 from .models import *
 from .forms import *
@@ -52,10 +56,32 @@ class AddPage(LoginRequiredMixin,CreateView):
     form_class = AddPostForm
     template_name = 'women/addpage.html'
     #success_url = reverse_lazy('home') ???
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'women/register.html'
+    success_url = reverse_lazy('login')
+
+    def form_valid(self,form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('home')
+
+class LoginUser(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'women/login.html'
+    success_url = reverse_lazy('home')
     
+    def get_success_url(self):
+        return reverse_lazy('home')
+
 @login_required
 def about(request):
     return render(request,'women/about.html', {'title':'Text Title About','list_data':list_data_about})
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
 def women(request):
     print(request)
@@ -85,9 +111,6 @@ def cat(request,catid):
 
 def contact(requset):
     return HttpResponse(f"contact")
-
-def login(requset):
-    return HttpResponse(f"login")
 
 def pageNotFound(requet,exception):
     return HttpResponseNotFound("Not Found")

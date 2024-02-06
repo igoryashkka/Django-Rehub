@@ -10,6 +10,9 @@ urlpatterns = [
     path('show_cat/<int:cat_id>',ShowCategory.as_view(),name='cat'),
     path('cat/<int:catid>/',views.cat),
     path('addpage',AddPage.as_view(),name='addpage'),
-    path('show_cat/addpage',AddPage.as_view(),name='addpage')#Kostulь?
+    path('show_cat/addpage',AddPage.as_view(),name='addpage'),#Kostulь?
+    path('register/',RegisterUser.as_view(),name = 'register'),
+    path('login/',LoginUser.as_view(),name = 'login'),
+    path('logout/',logout_user,name = 'logout')
 ]
 

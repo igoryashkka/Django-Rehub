@@ -147,3 +147,5 @@ REST_FRAMEWORK = {
     'rest_framework.permissions.AllowAny', # Or you can use 'IsAuthenticated'
     ]
 }
+
+#LOGIN_REDIRECT_URL = '/'
