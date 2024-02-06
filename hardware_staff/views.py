@@ -18,17 +18,17 @@ def index(request):
 class HardwareListAPIView(generics.ListCreateAPIView):
     queryset = Microcontoller.objects.all()
     serializer_class = HardwareSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    #permission_classes = [IsAuthenticatedOrReadOnly]
 
 class HardwareUpdateAPIView(generics.UpdateAPIView):
     queryset = Microcontoller.objects.all()
     serializer_class = HardwareSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    #permission_classes = [IsOwnerOrReadOnly]
 
 class HardwareDestroyAPI(generics.DestroyAPIView):
     queryset = Microcontoller.objects.all()
     serializer_class = HardwareSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
 
 class HardwareRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Microcontoller.objects.all()
