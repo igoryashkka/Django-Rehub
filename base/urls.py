@@ -31,7 +31,8 @@ urlpatterns = [
     path('hardware_staff/', include('hardware_staff.urls')),
     path('api/v1/hardware/',HardwareListAPIView.as_view()),
     path('api/v1/hardware/<int:pk>/',HardwareUpdateAPIView.as_view()),
-    path('api/v1/hardware_delete/<int:pk>/',HardwareDestroyAPI.as_view())
+    path('api/v1/hardware_delete/<int:pk>/',HardwareDestroyAPI.as_view()),
+    path('blog/', include('blog.urls', namespace='blog')),
 ]
 
 if settings.DEBUG:
