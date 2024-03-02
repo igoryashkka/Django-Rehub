@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+e$65f-su9=vtzli-3v=qn@n$w6xi7v^m0gh+*h4arsr(vt%=9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['django-app', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'women.apps.WomenConfig',
     'blog.apps.BlogConfig',
     'rest_framework',
+    'django_prometheus',
     'bootstrap5',   
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -90,6 +93,12 @@ DATABASES = {
     }
 }
 
+""" DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+} """
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

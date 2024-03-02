@@ -35,7 +35,26 @@ services:
       - app_postgres
     ports:
       - "${NGINX_EXTERNAL_PORT}:80"
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    
 
 volumes:
   static_volumes:
   media_volumes:
+  grafana_data:
+  prometheus_data:
