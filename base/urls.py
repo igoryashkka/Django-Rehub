@@ -23,6 +23,7 @@ from women.views import pageNotFound
 from base import settings
 
 urlpatterns = [
+    #path('', include('django_prometheus.urls')),
     #path('', index, name = 'home'),
     path('',include('women.urls')),
     path('admin/', admin.site.urls),
@@ -33,6 +34,7 @@ urlpatterns = [
     path('api/v1/hardware/<int:pk>/',HardwareUpdateAPIView.as_view()),
     path('api/v1/hardware_delete/<int:pk>/',HardwareDestroyAPI.as_view()),
     path('blog/', include('blog.urls', namespace='blog')),
+    path('metrics/', include('django_prometheus.urls')),
 ]
 
 if settings.DEBUG:
